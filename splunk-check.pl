@@ -176,7 +176,9 @@ foreach my $build (keys %vulns) {
 #set an env which will ignore cert errors
 $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME} = 0;
 
-my $ua = LWP::UserAgent->new;
+my $ua = LWP::UserAgent->new(
+  ssl_opts => { SSL_verify_mode => 0},
+);
 my $usage = "$0 url
 
 e.g. for management server: $0 http://host:8000
